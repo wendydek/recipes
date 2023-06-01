@@ -6,7 +6,7 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <nav class="menu">
       <RouterLink to="/">Gerechten</RouterLink>
-      <RouterLink to="/about">Boodschappenlijst</RouterLink>
+      <RouterLink to="/list">Boodschappenlijst</RouterLink>
     </nav>
   </header>
 
@@ -22,6 +22,10 @@ import { RouterLink, RouterView } from 'vue-router'
 .menu a {
   color: white;
   font-size: 1.2rem;
+}
+
+.menu .router-link-active {
+  color: #eeac10;
 }
 
 header {

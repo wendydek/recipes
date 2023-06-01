@@ -1,32 +1,11 @@
 <script setup lang="ts">
-  import { ref, computed } from 'vue';
+  import { ref, computed, watch } from 'vue';
+  import { useRouter } from 'vue-router';
   import CheckboxGroup from './Checkbox/CheckboxGroup.vue';
+  import { useShoppingList } from '../stores/shopplingList';
 
   import type { CheckboxOption } from './Checkbox/checkbox';
-
-  interface Ingredient {
-    name: string;
-    isAlternative?: boolean;
-    isAlternativeFor?: string;
-    isExtra?: boolean;
-  }
-
-  interface Variant {
-    name: string;
-    difficulty: 1 | 2 | 3;
-    health: number;
-    time: string;
-    persons: number;
-    howToPrepare: string;
-    forChild: string;
-    ingredients: Ingredient[];
-  }
-
-  interface Meal {
-    order: number;
-    name: string;
-    variants: Variant[];
-  }
+  import type { Meal } from './recipe';
 
   interface Props {
     recipe: Meal;
@@ -35,20 +14,26 @@
   const props = defineProps<Props>();
 
   const isCollapsed = ref(false);
-  const checkboxGroupValues = ref([]);
   const variant = ref('');
-
+  const shoppingList = useShoppingList();
+  const router = useRouter();
+  
   const activeRecipe = computed(() => {
-    if(props.recipe.variants.length === 1) {
-      return props.recipe.variants[0];
-    };
-
-    if(variant.value) {
-      return props.recipe.variants.filter(recipeVariant => variant.value === recipeVariant.name)[0];
-    }
-
+    if(props.recipe.variants.length === 1) return props.recipe.variants[0];
+    
+    if(variant.value) return props.recipe.variants.filter(recipeVariant => variant.value === recipeVariant.name)[0];
+    
     return null;
   });
+
+  const getSelectedIngredients = () => {
+    return activeRecipe.value?.ingredients
+      .filter(ingredient => !ingredient.isAlternative && !ingredient.isExtra)
+      .map(baseIngredient => baseIngredient.name) 
+      || [];
+  }
+
+  const checkboxGroupValues = ref(getSelectedIngredients());
 
   const checklist = computed<CheckboxOption[] | null>(() => {
     if(activeRecipe.value) {
@@ -56,12 +41,29 @@
         id: ingredient.name.replaceAll(' ', ''),
         label: ingredient.name,
         value: ingredient.name,
-        defaultValue: true,
+        subLabel: ingredient.isAlternative ? `Alternatief voor: ${ingredient.isAlternativeFor}` : ingredient.isExtra ? 'extra' : '',
       }))
     }
 
     return null;
-  })
+  });
+
+  const addToList = () => {
+    shoppingList.addToList({
+      recipeName: props.recipe.name,
+      variantName: activeRecipe.value?.name || '',
+      ingredients: checkboxGroupValues.value,
+    });
+
+    router.push({ path: '/list' });
+  }
+
+  watch(
+    activeRecipe,
+    () => {
+      checkboxGroupValues.value = getSelectedIngredients();
+    }
+  )
 </script>
 
 <template>
@@ -78,9 +80,7 @@
         class="content"
       >
       <div v-if="props.recipe.variants.length > 1">
-          <label for="variants">
-            Variant
-          </label>
+          <label for="variants">Variant</label>
           <select
             class="select"
             v-model="variant"
@@ -96,20 +96,74 @@
             </option>
           </select>
       </div>
-      <h3>{{ activeRecipe?.name }}</h3>
-      <p>{{ activeRecipe?.howToPrepare }}</p>
-      <CheckboxGroup
-        v-model="checkboxGroupValues"
-        :options="checklist"
-        name="checkList"
-        label="group"
-      />
-      value: {{ checkboxGroupValues }}
+      <div class="intro">
+        <h3>{{ activeRecipe?.name }}</h3>
+        <p>{{ activeRecipe?.howToPrepare }}</p>
+      </div>
+      <div class="stats">
+        <div>
+          <p>Tijd</p>
+          <p>{{ activeRecipe?.time }} minuten</p>
+        </div>
+        <div>
+          <p>Aantal personen</p>
+          <p>{{ activeRecipe?.persons }} minuten</p>
+        </div>
+      </div>
+      <div class="stats" v-if="activeRecipe">
+        <div>
+          <p>Moeilijkheid</p>
+          <div class="difficulty">
+            <div class="bar" :style="{ width: activeRecipe.difficulty * 33.3333 + '%'}">
+              <span>👩‍🍳</span>
+              <span>👩‍🍳</span>
+              <span>👩‍🍳</span>
+            </div>
+            <span>👩‍🍳</span>
+            <span>👩‍🍳</span>
+            <span>👩‍🍳</span>
+          </div>
+        </div>
+        <div>
+          <p>Gezond</p>
+          <div class="difficulty">
+            <div class="bar" :style="{ width: activeRecipe.health * 20 + '%'}">
+              <span>💪</span>
+              <span>💪</span>
+              <span>💪</span>
+              <span>💪</span>
+              <span>💪</span>
+            </div>
+              <span>💪</span>
+              <span>💪</span>
+              <span>💪</span>
+              <span>💪</span>
+              <span>💪</span>
+          </div>
+        </div>
+      </div>
+      <form @submit.prevent="addToList">
+        <CheckboxGroup
+          v-model="checkboxGroupValues"
+          :options="checklist"
+          name="checkList"
+          label="Ingrediënten"
+          class="checkGroup"
+        />
+        <button type="submit" class="button">
+          Voeg toe aan boodschappenlijst
+        </button>
+      </form>
+      <!-- TODO: add other recept info -->
       </div>
     </div>
 </template>
 
 <style scoped>
+
+.intro {
+  margin-bottom: 1rem;
+}
 .title {
   border-bottom: 1px solid var(--vt-c-text-dark-2);
   cursor: pointer;
@@ -152,9 +206,45 @@ select {
   -moz-appearance: none;
   width: 360px;
   max-width: 100%;
+  margin-bottom: .5rem;
 }
 
 .content {
   padding: 16px 8px;
 }
+
+.checkGroup {
+  margin-bottom: 1.2rem;
+}
+
+.difficulty {
+  display: inline-block;
+  font-size: 1.5rem;
+  position: relative;
+}
+
+.stats {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.stats > div {
+  flex-basis: 50%;
+}
+
+.stats > div > p:first-child {
+  font-weight: bold;
+}
+.difficulty > span {
+  opacity: .35;
+}
+
+.bar {
+  position: absolute;
+  height: 100%;
+  color: white;
+  display: flex;
+  overflow: hidden;
+}
+
 </style>

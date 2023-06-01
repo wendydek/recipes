@@ -17,7 +17,6 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits(['update:modelValue']);
 
 const update = (checked: boolean, value: string) => {
-  // issue: it emits all values seperately because updatedValue is set again on every call
   const updatedValue = [...props.modelValue];
 
   if (checked) {
@@ -31,17 +30,29 @@ const update = (checked: boolean, value: string) => {
 
 <template>
   <div class="wrapper">
-    <p v-if="props.label">
+    <h3 v-if="props.label">
       {{ props.label }}
-    </p>
+    </h3>
     <Checkbox
       v-for="option in props.options"
+      class="checkbox"
       :key="option.id"
-      :model-value="option.defaultValue || props.modelValue.includes(option.value)"
+      :model-value="props.modelValue.includes(option.value)"
       :value="option.value"
       :name="option.label + option.id"
       :label="option.label"
+      :subLabel="option.subLabel"
       @update:model-value="(checked: boolean) => update(checked, option.value)"
     />
   </div>
 </template>
+
+<style scoped>
+
+h3 {
+  margin-bottom: .5rem;
+}
+.checkbox {
+  margin-bottom: .5rem;
+}
+</style>

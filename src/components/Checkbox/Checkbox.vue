@@ -1,26 +1,18 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-
 export interface Props {
   label: string;
+  subLabel?: string;
   name: string;
   modelValue: boolean;
-  defaultValue?: boolean;
   value: string;
 }
-const props = defineProps<Props>();
-
+const props = withDefaults(defineProps<Props>(), {
+  subLabel: '',
+});
 const emit = defineEmits(['update:modelValue']);
 
-onMounted(() => {
-  if(props.modelValue) {
-    console.log('test');
-    emit('update:modelValue', props.modelValue);
-  }
-})
-
 const updateModelValue = () => {
-  emit('update:modelValue', props.modelValue);
+  emit('update:modelValue', !props.modelValue);
 };
 </script>
 
@@ -35,7 +27,8 @@ const updateModelValue = () => {
       @change="updateModelValue"
     />
     <label :for="props.name">
-        {{ props.label }}
+        {{ label }}
+        <span class="sublabel" v-if="subLabel">{{ subLabel }}</span>
     </label>
   </div>
 </template>
@@ -52,10 +45,17 @@ input {
   height: 20px;
   border-radius: 8px;
   accent-color: #eeac10;
+  flex-shrink: 0;
 }
 
 label {
   font-size: 1rem;
   line-height: 1;
+}
+
+.sublabel {
+  font-size: .85rem;
+  display: block;
+  margin-top: 2px;
 }
 </style>

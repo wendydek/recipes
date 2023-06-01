@@ -7,7 +7,7 @@
                 "name": "Kip",
                 "difficulty": 1,
                 "health": 3,
-                "time": "10min",
+                "time": "10",
                 "persons": 2,
                 "howToPrepare": "Kip bakken, kruidenpasta en water erbij naar smaak (of woksaus maar kruidenpasta is gezonder). Wokgroente en noodles erbij, nog wat kruidenpasta eventueel naar smaak en done.",
                 "forChild": false,
@@ -22,7 +22,7 @@
                         "name": "Wokgroenten"
                     },
                     {
-                        "name": "woksaus",
+                        "name": "Woksaus",
                         "isAlternative": true,
                         "isAlternativeFor": "Kruidenpasta"
                     }
@@ -32,13 +32,13 @@
     },
     {
         "order": 20,
-        "name": "Verse pasta pesto",
+        "name": "Pasta",
         "variants": [
             {
                 "name": "Kip pesto",
                 "difficulty": 1,
                 "health": 2,
-                "time": "10min",
+                "time": "10",
                 "persons": 2,
                 "howToPrepare": "Courgette en (punt)paprika snijden, even aanbakken. Apart leggen op bord. Water koken. Kort kip gaar bakken. Pasta in water. Groente bij kip, pesto erbij. Pasta afgieten en dan erbij.",
                 "forChild": true,
@@ -54,6 +54,9 @@
                     },
                     {
                         "name": "(Punt)paprika"
+                    },
+                    {
+                        "name": "Verse pasta"
                     },
                     {
                         "name": "wokgroenten",

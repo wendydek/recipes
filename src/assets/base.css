@@ -71,3 +71,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.button {
+  display: block;
+  cursor: pointer;
+  padding: 12px 16px;
+  background: #db5624;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+}
