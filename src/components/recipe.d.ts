@@ -7,7 +7,7 @@ interface Ingredient {
 
 interface Variant {
   name: string;
-  difficulty: 1 | 2 | 3;
+  difficulty: number;
   health: number;
   time: number;
   persons: number;
