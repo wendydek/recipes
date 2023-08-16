@@ -35,13 +35,14 @@
         "name": "Pasta",
         "variants": [
             {
-                "name": "Kip pesto",
+                "name": "Kip pesto - verse pasta",
                 "difficulty": 1,
                 "health": 2,
                 "time": "10",
                 "persons": 2,
                 "howToPrepare": "Courgette en (punt)paprika snijden, even aanbakken. Apart leggen op bord. Water koken. Kort kip gaar bakken. Pasta in water. Groente bij kip, pesto erbij. Pasta afgieten en dan erbij.",
                 "forChild": true,
+                "childNotes": "Paste met groente zonder saus apart houden voor jesse.",
                 "ingredients": [
                     {
                         "name": "Blokjes kipfilet"
@@ -62,6 +63,98 @@
                         "name": "wokgroenten",
                         "isAlternative": true,
                         "isAlternativeFor": "Courgette en paprika"
+                    }
+                ]
+            },
+            {
+                "name": "Macaroni",
+                "difficulty": 1,
+                "health": 2,
+                "time": "15",
+                "persons": 2,
+                "howToPrepare": "Macaroni koken. Ui en knoflook aanbakken, dan gehakt erbij. Dan wat groenten naar keuze of spaghetti/macaroni groenten erbij, tomatenpuree erbij. Evt spekjes of hamblokjes erbij, heel evt beetje boursin of iets erbij.",
+                "forChild": true,
+                "childNotes": "Dan zonder spekjes denk ik?",
+                "ingredients": [
+                    {
+                        "name": "Macaroni"
+                    },
+                    {
+                        "name": "Gehakt"
+                    },
+                    {
+                        "name": "Tomatenpuree"
+                    },
+                    {
+                        "name": "Tomatenpuree concentraat"
+                    },
+                    {
+                        "name": "Paprika"
+                    },
+                    {
+                        "name": "Prei"
+                    },
+                    {
+                        "name": "Spaghetti/macaron groenten",
+                        "isAlternative": true,
+                        "isAlternativeFor": "Paprika / prei"
+                    },
+                    {
+                        "name": "Courgette",
+                        "isExtra": true
+                    },
+                    {
+                        "name": "Rode ui",
+                        "isExtra": true
+                    },
+                    {
+                        "name": "Knoflook",
+                        "isExtra": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "order": 30,
+        "name": "Rijst",
+        "variants": [
+            {
+                "name": "Kip of runderreepjes rendang",
+                "difficulty": 1.5,
+                "health": 3,
+                "time": "20",
+                "persons": 2,
+                "howToPrepare": "Pan om te koken: Rijst koken daarna rijst laten staan en snijbonen koken. Wok (beginnen als rijst is gekookt): Optioneel: eerst wat knoflook en rode ui verhitten. Dan even kruidenpasta in de pan, kip of runderreepjes erbij tot bijna gaar. Kokosmelk erbij laten koken op zacht vuur minuut 5 dan nog een minuut of 5 met groente en rijst erbij in de pan.",
+                "forChild": true,
+                "childNotes": "Rijst en groente apart houden voor Jesse",
+                "ingredients": [
+                    {
+                        "name": "Rendang kruidenpasta"
+                    },
+                    {
+                        "name": "Kokosmelk 400ml"
+                    },
+                    {
+                        "name": "Runderreepjes"
+                    },
+                    {
+                        "name": "Snijbonen"
+                    },
+                    {
+                        "name": "Basmatirijst"
+                    },
+                    {
+                        "name": "Chinese kool",
+                        "isExtra": true
+                    },
+                    {
+                        "name": "Rode ui",
+                        "isExtra": true
+                    },
+                    {
+                        "name": "Knoflook",
+                        "isExtra": true
                     }
                 ]
             }

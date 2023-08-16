@@ -13,6 +13,7 @@ interface Variant {
   persons: number;
   howToPrepare: string;
   forChild: string;
+  childNotes?: string;
   ingredients: Ingredient[];
 }
 

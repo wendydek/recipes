@@ -96,11 +96,11 @@
             </option>
           </select>
       </div>
-      <div class="intro">
+      <div v-if="activeRecipe" class="intro">
         <h3>{{ activeRecipe?.name }}</h3>
         <p>{{ activeRecipe?.howToPrepare }}</p>
       </div>
-      <div class="stats">
+      <div class="stats" v-if="activeRecipe">
         <div>
           <p>Tijd</p>
           <p>{{ activeRecipe?.time }} minuten</p>
@@ -110,7 +110,7 @@
           <p>{{ activeRecipe?.persons }} minuten</p>
         </div>
       </div>
-      <div class="stats" v-if="activeRecipe">
+      <div v-if="activeRecipe" class="stats">
         <div>
           <p>Moeilijkheid</p>
           <div class="difficulty">
@@ -142,15 +142,20 @@
           </div>
         </div>
       </div>
+      <div v-if="activeRecipe" class="child-info">
+        <p>Geschikt voor Jesse: {{ activeRecipe?.forChild ? 'Ja' : 'Nee' }}</p>
+        <p v-if="activeRecipe?.childNotes">- {{ activeRecipe.childNotes }}</p>
+      </div>
       <form @submit.prevent="addToList">
         <CheckboxGroup
+          v-if="activeRecipe"
           v-model="checkboxGroupValues"
           :options="checklist"
           name="checkList"
           label="Ingrediënten"
           class="checkGroup"
         />
-        <button type="submit" class="button">
+        <button v-if="activeRecipe" type="submit" class="button">
           Voeg toe aan boodschappenlijst
         </button>
       </form>
@@ -198,7 +203,7 @@ select {
   font: inherit;
   line-height: 1.5em;
   padding: 0.5em 3.5em 0.5em 1em;
-  margin: 0;      
+  margin: 0 0 1rem 0;      
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -245,6 +250,10 @@ select {
   color: white;
   display: flex;
   overflow: hidden;
+}
+
+.child-info {
+  margin-bottom: .5rem;
 }
 
 </style>
