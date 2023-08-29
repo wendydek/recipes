@@ -107,7 +107,7 @@
         </div>
         <div>
           <p>Aantal personen</p>
-          <p>{{ activeRecipe?.persons }} minuten</p>
+          <p>{{ activeRecipe?.persons }}</p>
         </div>
       </div>
       <div v-if="activeRecipe" class="stats">

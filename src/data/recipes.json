@@ -31,6 +31,136 @@
         ]
     },
     {
+        "order": 15,
+        "name": "Oven",
+        "variants": [
+            {
+                "name": "Plaattaart met gegrilde groenten",
+                "difficulty": 1,
+                "health": 1.5,
+                "time": "10 (+ 30 oven)",
+                "persons": 4,
+                "howToPrepare": "Oven voorverwarmen op 200 graden. Bakplaat bedekken met bladerdeeg en bestreiken met pesto. Laat 1.5cm van de randen vrij. Verdeel groenten over deeg en bestrooi met kaas. Bestreik de randen met water. 30 min id oven.",
+                "forChild": true,
+                "ingredients": [
+                    {
+                        "name": "Bladerdeeg diepvries (ong 270 gram)"
+                    },
+                    {
+                        "name": "Pesto (ong 90 gram) of pesto spread van de deli"
+                    },
+                    {
+                        "name": "Gegrilde groenten vers of diepvries (ong 450 gram)"
+                    },
+                    {
+                        "name": "Geraspte kaas"
+                    },
+                    {
+                        "name": "Paprika",
+                        "isAlternative": true,
+                        "isAlternativeFor": "Gegrilde groenten"
+                    },
+                    {
+                        "name": "Courgette",
+                        "isAlternative": true,
+                        "isAlternativeFor": "Gegrilde groenten"
+                    }
+                ]
+            },
+            {
+                "name": "Kipfilet met pompoen en zoete aardappel",
+                "difficulty": 1,
+                "health": 3.5,
+                "time": "10 (+ 20 oven)",
+                "persons": 2,
+                "howToPrepare": "Oven voorverwarmen op 200 graden. Kipfilet, pompoen en zoete aardappel blokjes verdelen over bakplaat. Kipfilet in eigen bakpapier dat het sap niet overal heengaat. Evt wat pesto of kruidenkaas op de kip, wat kruiden over de aardappeltjes en groenten.",
+                "forChild": true,
+                "childNotes": "Niet kruiden.",
+                "ingredients": [
+                    {
+                        "name": "Hele kipfilets"
+                    },
+                    {
+                        "name": "Pompoen blokjes"
+                    },
+                    {
+                        "name": "Zoete aardappel blokjes"
+                    },
+                    {
+                        "name": "Paprika"
+                    },
+                    {
+                        "name": "Courgette",
+                        "isExtra": true
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "order": 17,
+        "name": "AVG",
+        "variants": [
+            {
+                "name": "Stamppot rauwe andijvie ala Eef",
+                "difficulty": 1,
+                "health": 2.5,
+                "time": "20",
+                "persons": 4,
+                "howToPrepare": "Waterkoker aanzetten rookworst, rookworst in pannentje kokend water. Grote pan met laagje aardappelen opzetten. Aardappels laten koken tot zacht genoeg om te prakken. Ondertussen spekjes uitbakken in pan. Aardappels afgieten, beetje water in de pan laten. Stampen, peper en zout toevoegen, spekjes erdoorheen. Dan beetje voor beetje andijvie erdoorheen scheppen.",
+                "forChild": true,
+                "childNotes": "Aardappels apart houden en geen peper/zout toevoegen.",
+                "ingredients": [
+                    {
+                        "name": "Grote zak stamppotaardappels (zeker 1kg)"
+                    },
+                    {
+                        "name": "Rookworst"
+                    },
+                    {
+                        "name": "Grote zak fijngesneden rauwe andijvie"
+                    },
+                    {
+                        "name": "Spekjes"
+                    },
+                    {
+                        "name": "(Amandel)melk",
+                        "isExtra": true
+                    }
+                ]
+            },
+            {
+                "name": "Aardappelpuree met filetlapjes en snijbonen",
+                "difficulty": 1,
+                "health": 2.5,
+                "time": "20",
+                "persons": 4,
+                "howToPrepare": "Aardappelpuree maken of kopen. Mosterd en peper/zout op filetlapjes, 6 minuten bakken op middelhoog vuur. Voeg half kopje water toe en laat 2 min zachtjes koken (jus). Snijbonen koken. Cherrytomaatjes bijpleuren :)",
+                "forChild": true,
+                "childNotes": "Filetlapje apart houden, geen peper/zoet in aardappelpuree",
+                "ingredients": [
+                    {
+                        "name": "Aardappels (geschikt voor puree)"
+                    },
+                    {
+                        "name": "Filetlapjes"
+                    },
+                    {
+                        "name": "Snijbonen"
+                    },
+                    {
+                        "name": "Cherrytomaatjes"
+                    },
+                    {
+                        "name": "(Zoete) aardappelpuree",
+                        "isAlternative": true,
+                        "isAlternativeFor": "Aardappels (geschikt voor puree)"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "order": 20,
         "name": "Pasta",
         "variants": [
